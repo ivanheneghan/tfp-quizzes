@@ -47,3 +47,6 @@ end
 # Use Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'sprockets', '2.11.0'
+
+# Use Heroku
+gem 'rails_12factor', group: :production
