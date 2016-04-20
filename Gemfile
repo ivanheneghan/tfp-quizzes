@@ -50,3 +50,6 @@ gem 'sprockets', '2.11.0'
 
 # Use Heroku
 gem 'rails_12factor', group: :production
+
+# Use SimpleForm
+gem 'simple_form'

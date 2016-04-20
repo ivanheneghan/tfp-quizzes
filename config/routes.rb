@@ -1,5 +1,7 @@
 Quizzes::Application.routes.draw do
-  root 'quizzes#index'
+  root 'expenses#index'
+  resources :expenses
+  get 'about', to: 'expenses#about'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

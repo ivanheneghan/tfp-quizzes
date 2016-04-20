@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quizzes</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <title>Budgety</title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class="col-xs-2 name">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', class: 'img-responsive' %>
+      <% end %>
+    </div>
+    <div class="col-sm-6 hidden-xs slogan">
+      <br />
+      The simplest expense tracking app you'll ever use
+    </div>
+    <div class="col-xs-9 col-xs-offset-1 col-sm-offset-0 col-sm-4 links">
+      <br />
+      <!-- Button trigger modal -->
+      <%= link_to 'Add an Expense', new_expense_path, data: {toggle: 'modal', target: '#myModal'} %>
+      &nbsp;&nbsp;
+      <%= link_to 'About', about_path %>
+    </div>
+  </header>
 
-<%= yield %>
-
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Add Your Expense</h4>
+        </div>
+        <%= simple_form_for Expense.new do |f| %>
+          <div class="modal-body">
+            <%= f.input :expenses, label:"What is the expense?", placeholder: "Groceries" %>
+            <br />
+            <%= f.input :amount, label: "What is the amount?", placeholder: "0" %>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+          <%= f.submit 'Add An Expense', class: 'btn btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <br class="clear" />
+  <div class="container">
+    <% if flash[:error].present? %>
+      <div class="col-xs-10 col-xs-offset-1 alert alert-danger">
+        <%= flash[:error].html_safe %>        
+      </div>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>

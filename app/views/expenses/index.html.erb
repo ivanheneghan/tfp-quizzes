@@ -1,0 +1,8 @@
+<h1>The Expense List</h1>
+<% @expense.each do |expense| %>
+  <div>
+    <h2><%= expense.expenses %> : <%= expense.amount %><h2>
+  </div>
+
+  <hr />
+<% end %>
